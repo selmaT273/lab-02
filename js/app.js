@@ -2,6 +2,7 @@
 
 const pics = [];
 let keywords = [];
+let horns = [];
 
 function Pic(url, title, description, keyword, horns) {
   this.url = url;
@@ -10,36 +11,6 @@ function Pic(url, title, description, keyword, horns) {
   this.keyword = keyword;
   this.horns = horns;
 }
-
-
-
-// Pic.prototype.render = function(container) {
-//   let $container = $(container);
-//   let $template = $container.find('#photo-template');
-//   let $pic = $template.clone();
-//   //   $pic.removeClass('photo-template');
-//   $pic.find('.pic-title').text(this.title);
-//   $pic.find('.pic-image').attr('src', this.url);
-//   $container.append($pic);
-// };
-
-
-//     console.log(data);
-//     // let $section = $('<section>').attr('photo-template');
-//     // let $title = $('<h2>').text(title);
-//     // let $img = $('<img>').attr('src', url);
-//     // let $description = $('<p>').text(description);
-//     // $section.append($title, $img, $description);
-//     // $('main').append($section);
-
-//     data.forEach(pic => {
-//       console.log(pic.title);
-
-//       let actualPic = new Pic(this.url);
-//       actualPic.render('#photo-template');
-//     });
-//   });
-
 
 
 const ajaxSettings = {
@@ -53,15 +24,21 @@ $.ajax('data/page-1.json', ajaxSettings)
     $data.forEach(function(element){
       pics.push(new Pic(element.image_url, element.title, element.description, element.keyword, element.horns));
       keywords.push(element.keyword);
+      horns.push(element.horns);
     });
     pics.forEach(function(element){
       renderimage(element.url, element.title, element.description, element.horns, element.keyword);
     });
     keywords = new Set(keywords);
     keywords.forEach(function(element){
-      createList(element);
+      filterByKeyword(element);
+    });
+    horns = new Set(horns);
+    horns.forEach(function(element){
+      filterByHorns(element);
     });
     $('select').change(hideElement);
+    // $('select').change(hideHorns);
   });
 
 function renderimage(url, title, description, horns, keyword) {
@@ -69,13 +46,20 @@ function renderimage(url, title, description, horns, keyword) {
   let $title = $('<h2>').text(title);
   let $img = $('<img>').attr('src', url).attr('alt', description);
   let $text = $('<p>').text(`Image description: ${description}`);
-  $section.append($title, $img, $text);
+  let $horns = $('<p>').text(`# of Horns: ${horns}`).attr('data-keyword', horns);
+  $section.append($title, $img, $text, $horns);
   $('main').append($section);
 }
 
-function createList(keyword) {
+function filterByKeyword(keyword) {
   let $option = $('<option>').text(keyword).attr('value', keyword);
-  $('select').append($option);
+  $('.keyword-filter').append($option);
+}
+
+function filterByHorns(horns) {
+  let $option = $('<option>').text(horns).attr('value', horns);
+  $('.horns-filter').append($option);
+
 }
 
 function hideElement() {
@@ -87,3 +71,19 @@ function hideElement() {
     $('section').fadeIn(750);
   }
 }
+
+function reloadPage(){
+  location.reload(true);
+}
+
+
+
+// function hideHorns() {
+//   let value = $(this).val();
+//   if(value !== 'default'){
+//     $('section').hide();
+//     $(`section[data-horns=${value}]`).slideDown(888);
+//   } else {
+//     $('section').fadeIn(750);
+//   }
+// }
