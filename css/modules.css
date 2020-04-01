@@ -1,0 +1,12 @@
+body {
+    background-color: lightgray;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Handlee', cursive;
+}
+
+select {
+    text-align: center;
+}
