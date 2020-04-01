@@ -76,6 +76,24 @@ function reloadPage(){
   location.reload(true);
 }
 
+function sortAlphabetical(a, b) {
+  const picTitleA = a.title;
+  const picTitleB = b.title;
+  let comparison = 0;
+  if (picTitleA > picTitleB) {
+    comparison = 1;
+  } else if (picTitleA < picTitleB) {
+    comparison = -1;
+  }
+  return comparison;
+}
+
+// pics.sort(sortAlphabetical);
+// $('.sort').on('click',(function(){
+//   pics.sort(sortAlphabetical);
+// }));
+
+
 
 
 // function hideHorns() {
@@ -86,4 +104,4 @@ function reloadPage(){
 //   } else {
 //     $('section').fadeIn(750);
 //   }
-// }
+//
