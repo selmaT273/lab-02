@@ -21,21 +21,21 @@ const ajaxSettings = {
 $.ajax('data/page-1.json', ajaxSettings)
   .then(function(data) {
     let $data = data;
-    $data.forEach(function(element){
-      pics.push(new Pic(element.image_url, element.title, element.description, element.keyword, element.horns));
-      keywords.push(element.keyword);
-      horns.push(element.horns);
+    $data.forEach(function(object){
+      pics.push(new Pic(object.image_url, object.title, object.description, object.keyword, object.horns));
+      keywords.push(object.keyword);
+      horns.push(object.horns);
     });
-    pics.forEach(function(element){
-      renderimage(element.url, element.title, element.description, element.horns, element.keyword);
+    pics.forEach(function(object){
+      renderimage(object.url, object.title, object.description, object.horns, object.keyword);
     });
     keywords = new Set(keywords);
-    keywords.forEach(function(element){
-      filterByKeyword(element);
+    keywords.forEach(function(object){
+      filterByKeyword(object);
     });
     horns = new Set(horns);
-    horns.forEach(function(element){
-      filterByHorns(element);
+    horns.forEach(function(object){
+      filterByHorns(object);
     });
     $('select').change(hideElement);
     // $('select').change(hideHorns);
@@ -66,9 +66,9 @@ function hideElement() {
   let value = $(this).val();
   if(value !== 'default'){
     $('section').hide();
-    $(`section[data-keyword=${value}]`).slideDown(888);
+    $(`section[data-keyword=${value}]`).slideDown(900);
   } else {
-    $('section').fadeIn(750);
+    $('section').fadeIn(800);
   }
 }
 
