@@ -10,3 +10,15 @@ h1 {
 select {
     text-align: center;
 }
+
+header {
+    margin-top: 15px;
+    height: 60px;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 36px;
+    display: block;
+    margin-bottom: 15px;
+}
