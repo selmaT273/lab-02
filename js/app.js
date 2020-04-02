@@ -26,7 +26,7 @@ Pic.prototype.render = function (container) {
 
 function filterPics(pic){
   let $filter = $('.filter');
-  let $makeFilter = $('<option>');
+  let $makeFilter = $('<option>').addClass('styleFilter');
   $makeFilter.text(pic.keyword);
   $makeFilter.val(pic.keyword);
 
