@@ -11,23 +11,34 @@
     <link rel="stylesheet" href="css/layouts.css">
     <link rel="stylesheet" href="css/modules.css">
     <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
   </head>
   <body>
     <header>
       <h1>The Gallery of Horns</h1>
-      <select class="keyword-filter">
-        <option value="default">Filter by Keyword</option>
+      <select class="filter">
+        <option class="options" value="default">Filter by Keyword</option>
       </select>
-      <select class="horns-filter">
+      <!-- <select class="horns-filter">
         <option value="default">Filter by # of Horns</option>
-      </select>
+      </select> -->
       <button type="button" onclick="reloadPage();">Clear Filter</button>
       <button type="button" class="sort">Sort A-Z</button>
     </header>
     <main>
     </main>
+
+    <footer>
+      &copy; 2018 Code Fellows
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/app.js"></script>
+
+    <section id="photo-template">
+      <h2 class="pic-name"></h2>
+      <img src="" alt="" class="pic-display">
+      <p></p>
+    </section>
   </body>
 </html>
 
